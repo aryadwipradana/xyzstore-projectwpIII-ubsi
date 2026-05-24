@@ -31,9 +31,12 @@
            <span class="badge badge-primary"></i>
             Proses
            </span>
+           @elseif ($row->status == 'Kirim')
+                      <span class="badge badge-danger"></i>
+            Kirim
+           </span>
           @else
-           <span class="badge badge-warning" style="color: 
-white;"></i>
+           <span class="badge badge-warning" style="color: white;"></i>
             {{ $row->status }}
            </span>
           @endif
@@ -43,14 +46,9 @@ white;"></i>
           <a href="{{ route('backend.pesanan.detail', $row->id) }}" title="detail Order">
            <button type="button" class="badge badge-primary"><i class="far fa-eye"></i> Detail</button>
           </a>
-          {{-- <a href="{{ route('pesanan.invoice', $row->id) }}" title="Cetak Invoice" target="_blank">
-           <button type="button" class="badge badge-secondary"><i class="fas fa-print"></i> Cetak</button>
-          </a> --}}
-          {{-- <a href="" title="detail Order">
-           <button type="button" class="badge badge-primary"><i class="far fa-eye"></i> Detail</button>
-          </a> --}}
-          <a href="" title="Cetak Invoice" target="_blank">
-           <button type="button" class="badge badge-secondary"><i class="fas fa-print"></i> Cetak</button>
+
+          <a href="{{ route('backend.invoice', $row->id )}}" title="Cetak Invoice" target="_blank">
+           <button type="button" class="badge badge-secondary"><i class="fas fa-print"></i> Cetak Invoice</button>
           </a>
          </td>
         </tr>

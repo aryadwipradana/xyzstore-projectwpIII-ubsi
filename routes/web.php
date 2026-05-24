@@ -79,7 +79,13 @@ Route::get('backend/pesanan/detail/{id}', [OrderController::class, 'statusDetail
     ->name('backend.pesanan.detail')
     ->middleware('auth');
 
-Route::put('/backend/pesanan/detail/{id}', [OrderController::class, 'statusUpdate', 'as'=> 'backend'])->name('pesanan.update')->middleware('auth');
+Route::get('/backend/invoice/{Id}', [OrderController::class, 'invoiceBackend'])
+    ->name('backend.invoice')
+    ->middleware('auth');
+
+Route::put('/backend/pesanan/detail/{id}', [OrderController::class, 'statusUpdate', 'as' => 'backend'])
+    ->name('pesanan.update')
+    ->middleware('auth');
 
 Route::get('/produk/detail/{id}', [ProdukController::class, 'detail'])->name('produk.detail');
 
@@ -115,7 +121,7 @@ Route::middleware('is.customer')->group(function () {
     Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
     Route::post('/checkout/payment/{orderId}', [OrderController::class, 'selectpayment'])->name('selectpayment');
     Route::get('/history', [OrderController::class, 'orderHistory'])->name('order.history');
-    Route::get('/invoice/{Id}',[OrderController::class, 'invoice'])->name('invoice');
+    Route::get('/invoice/{Id}', [OrderController::class, 'invoice'])->name('invoice');
 });
 
 Route::get('/list-ongkir', function () {

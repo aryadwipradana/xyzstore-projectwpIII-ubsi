@@ -197,11 +197,12 @@ navigation"><i class="ti-more"></i></a>
        <ul aria-expanded="false" class="first-level collapse">
         <li class="sidebar-item"><a href="{{ route('backend.laporan.formuser') }}" class="sidebar-link"><i
            class="mdi mdi-chevron-right"></i><span class="hide-menu"> User </span></a></li>
-        <li class="sidebar-item"><a href="{{ route('backend.laporan.formproduk') }}" class="sidebar-link"><i
+        
+           <li class="sidebar-item"><a href="{{ route('backend.laporan.formproduk') }}" class="sidebar-link"><i
            class="mdi mdi-chevron-right"></i><span class="hide-menu"> Produk </span></a></li>
-        {{-- <li class="sidebar-item"><a href="{{ route('backend.laporan.formorder') }}"
+        <li class="sidebar-item"><a href=""
                                         class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span
-                                            class="hide-menu"> Order </span></a></li> --}}
+                                            class="hide-menu"> Order </span></a></li>
        </ul>
       </li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -335,6 +336,16 @@ navigation"><i class="ti-more"></i></a>
    });
   </script>
  @endif
+
+ @if (session('failed'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Gagal!',
+        text: "{{ session('failed') }}",
+    });
+</script>
+@endif
  <!-- konfirmasi success End-->
  <script type="text/javascript">
   //Konfirmasi delete 

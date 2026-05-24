@@ -337,20 +337,27 @@ ditambahkan ke keranjang',
     public function statusUpdate(Request $request, string $id)
     {
         $order = Order::findOrFail($id);
+
         $rules = [
-            'alamat' => 'required',
+            'status' => 'required',
         ];
-        if ($request->status != $order->status) {
-            $rules['status'] = 'required';
-        }
-        if ($request->noresi != $order->noresi) {
+
+        // Jika status diubah menjadi Kirim
+        if ($request->status == 'Kirim') {
             $rules['noresi'] = 'required';
-        }
-        if ($request->pos != $order->pos) {
             $rules['pos'] = 'required';
         }
+
+if ($request->status == 'Selesai' && $order->status != 'Kirim') {
+    return back()->with('failed', 'Pesanan harus berstatus Kirim terlebih dahulu');
+}
+
+
+
         $validatedData = $request->validate($rules);
+
         Order::where('id', $id)->update($validatedData);
+
         return redirect()->route('backend.pesanan.proses')->with('success', 'Data berhasil diperbaharui');
     }
 
@@ -529,7 +536,8 @@ dengan Tanggal Awal.',
 
     public function invoiceBackend($id)
     {
-        $order = Order::findOrFail($id);
+        $order = Order::with('orderItems', 'customer.user')->findOrFail($id);
+
         return view('backend.v_pesanan.invoice', [
             'judul' => 'Pesanan',
             'subJudul' => 'Pesanan Proses',
@@ -537,20 +545,16 @@ dengan Tanggal Awal.',
         ]);
     }
 
-    public function invoiceFrontend($id)
-    {
-        $order = Order::findOrFail($id);
-        return view('backend.v_pesanan.invoice', [
-            'judul' => 'Pesanan',
-            'subJudul' => 'Pesanan Proses',
-            'order' => $order,
-        ]);
-    }
+
 
     public function invoice($id)
     {
         $order = Order::with('orderItems', 'customer.user')->findOrFail($id);
 
-        return view('v_order.invoice', compact('order'));
+        return view('v_order.invoice', [
+            'judul' => 'Pesanan',
+            'subJudul' => 'Pesanan Proses',
+            'order' => $order,
+        ]);
     }
 }

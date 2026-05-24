@@ -1,5 +1,7 @@
 @extends('backend.v_layouts.app')
 @section('content')
+
+
  <!-- template -->
  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
   <div class="card mb-3">
@@ -136,8 +138,8 @@
 
        <div class="form-group">
         <label>Alamat</label><br>
-        <textarea name="alamat" class="form-control @error('alamat') 
-is-invalid @enderror" id="ckeditor">{{ old('alamat', $order->alamat) }}</textarea>
+        <textarea name="alamat" class="form-control @error('alamat')
+is-invalid @enderror" disabled >{{ old('alamat', $order->customer->alamat ?? '') }}</textarea>
         @error('alamat')
          <span class="invalid-feedback alert-danger" role="alert">
           {{ $message }}
@@ -171,5 +173,17 @@ Resi">
   </div>
  </div>
 
+@if (session()->has('error'))
+<script>
+    $(document).ready(function () {
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: '{{ session('error') }}',
+            confirmButtonColor: '#d33'
+        });
+    });
+</script>
+@endif
  <!-- end template-->
 @endsection
