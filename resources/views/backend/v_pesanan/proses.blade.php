@@ -29,14 +29,18 @@
 
           @if ($row->status == 'Paid')
            <span class="badge badge-primary"></i>
-            Proses
+            Paid
            </span>
            @elseif ($row->status == 'Kirim')
                       <span class="badge badge-danger"></i>
             Kirim
            </span>
+                      @elseif ($row->status == 'pending_payment')
+                      <span class="badge badge-info"></i>
+            Pending
+           </span>
           @else
-           <span class="badge badge-warning" style="color: white;"></i>
+           <span class="badge badge-danger" style="color: white;"></i>
             {{ $row->status }}
            </span>
           @endif
@@ -59,6 +63,5 @@
    </div>
   </div>
  </div>
-
  <!-- end template-->
 @endsection

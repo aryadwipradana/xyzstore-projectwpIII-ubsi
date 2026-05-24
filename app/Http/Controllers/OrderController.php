@@ -348,11 +348,9 @@ ditambahkan ke keranjang',
             $rules['pos'] = 'required';
         }
 
-if ($request->status == 'Selesai' && $order->status != 'Kirim') {
-    return back()->with('failed', 'Pesanan harus berstatus Kirim terlebih dahulu');
-}
-
-
+        if ($request->status == 'Selesai' && $order->status != 'Kirim') {
+            return back()->with('failed', 'Pesanan harus berstatus Kirim terlebih dahulu');
+        }
 
         $validatedData = $request->validate($rules);
 
@@ -534,6 +532,45 @@ dengan Tanggal Awal.',
         ]);
     }
 
+    public function formOrder()
+    {
+        return view('backend.v_pesanan.laporanorder', [
+            'judul' => 'Laporan Order',
+            'subJudul' => 'Laporan Order',
+        ]);
+    }
+
+    public function cetakOrder(Request $request)
+    {
+        $request->validate(
+            [
+                'tanggal_awal' => 'required|date',
+                'tanggal_akhir' => 'required|date|after_or_equal:tanggal_awal',
+            ],
+            [
+                'tanggal_awal.required' => 'Tanggal Awal harus diisi.',
+                'tanggal_akhir.required' => 'Tanggal Akhir harus diisi.',
+                'tanggal_akhir.after_or_equal' => 'Tanggal Akhir harus lebih besar atau sama dengan Tanggal Awal.',
+            ],
+        );
+
+        $tanggalAwal = $request->tanggal_awal;
+        $tanggalAkhir = $request->tanggal_akhir;
+
+        $order = Order::with(['customer', 'orderItems.produk'])
+            ->whereDate('updated_at', '>=', $tanggalAwal)
+            ->whereDate('updated_at', '<=', $tanggalAkhir)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('backend.v_pesanan.cetak', [
+            'judul' => 'Laporan Order',
+            'tanggalAwal' => $tanggalAwal,
+            'tanggalAkhir' => $tanggalAkhir,
+            'cetak' => $order,
+        ]);
+    }
+
     public function invoiceBackend($id)
     {
         $order = Order::with('orderItems', 'customer.user')->findOrFail($id);
@@ -544,8 +581,6 @@ dengan Tanggal Awal.',
             'order' => $order,
         ]);
     }
-
-
 
     public function invoice($id)
     {

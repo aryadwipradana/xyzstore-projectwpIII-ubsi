@@ -119,7 +119,7 @@
         <select name="status" class="form-control @error('status') is-invalid @enderror">
          <option value="" {{ old('status', $order->status) == '' ? 'selected' : '' }}> -
           Pilih Status Pesanan -</option>
-         <option value="Paid" {{ old('status', $order->status) == 'Paid' ? 'selected' : '' }}>
+         <option value="Proses" {{ old('status', $order->status) == 'Proses' ? 'selected' : '' }}>
           Proses</option>
          <option value="Kirim" {{ old('status', $order->status) == 'Kirim' ? 'selected' : '' }}>
           Kirim</option>
@@ -173,17 +173,5 @@ Resi">
   </div>
  </div>
 
-@if (session()->has('error'))
-<script>
-    $(document).ready(function () {
-        Swal.fire({
-            icon: 'error',
-            title: 'Gagal!',
-            text: '{{ session('error') }}',
-            confirmButtonColor: '#d33'
-        });
-    });
-</script>
-@endif
  <!-- end template-->
 @endsection

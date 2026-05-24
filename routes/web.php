@@ -71,6 +71,13 @@ Route::post('backend/laporan/cetakproduk', [ProdukController::class, 'cetakProdu
     ->name('backend.laporan.cetakproduk')
     ->middleware('auth');
 
+    Route::get('backend/laporan/formorder', [OrderController::class, 'formOrder'])
+    ->name('backend.laporan.formorder')
+    ->middleware('auth');
+Route::post('backend/laporan/cetakorder', [OrderController::class, 'cetakOrder'])
+    ->name('backend.laporan.cetakorder')
+    ->middleware('auth');
+
 Route::get('backend/pesanan', [OrderController::class, 'statusProses'])
     ->name('backend.pesanan.proses')
     ->middleware('auth');

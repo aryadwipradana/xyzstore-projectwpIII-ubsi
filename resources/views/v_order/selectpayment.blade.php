@@ -1,7 +1,8 @@
 @extends('v_layouts.app')
+
+@section('content')
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
 </script>
-@section('content')
  <div class="col-md-12">
   <div class="order-summary clearfix">
    <div class="section-title">
@@ -52,7 +53,7 @@
           <li><span>Berat: {{ $item->produk->berat }} Gram</span></li>
          </ul>
          <ul>
-          <li><span>Stok: {{ $item->produk->stok }} Gram</span></li>
+          <li><span>Stok: {{ $item->produk->stok }}</span></li>
          </ul>
         </td>
         <td class="price text-center"><strong>Rp. {{ number_format($item->harga, 0, ',', '.') }}</strong></td>

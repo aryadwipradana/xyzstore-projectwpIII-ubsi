@@ -200,7 +200,7 @@ navigation"><i class="ti-more"></i></a>
         
            <li class="sidebar-item"><a href="{{ route('backend.laporan.formproduk') }}" class="sidebar-link"><i
            class="mdi mdi-chevron-right"></i><span class="hide-menu"> Produk </span></a></li>
-        <li class="sidebar-item"><a href=""
+        <li class="sidebar-item"><a href="{{ route('backend.laporan.formorder') }}"
                                         class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span
                                             class="hide-menu"> Order </span></a></li>
        </ul>

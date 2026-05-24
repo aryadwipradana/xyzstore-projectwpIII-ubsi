@@ -124,7 +124,9 @@
     let courier = $('#courier').val();
     let weight = {{ $totalWeight }};
 
-    if (!district_id || !courier) {
+    let alamat = $('#alamat').val().trim();
+
+    if (!district_id || !courier || !alamat) {
      showAlert('Lengkapi data terlebih dahulu');
      return;
     }

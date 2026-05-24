@@ -484,10 +484,9 @@
      <div class="footer">
       <h3 class="footer-header">Link</h3>
       <ul class="list-links">
-       <li><a href="#">Beranda</a></li>
-       <li><a href="#">Produk</a></li>
+       <li><a href="{{ route('produk.all') }}">Produk</a></li>
        <li><a href="#">About Us</a></li>
-       <li><a href="#">Lokasi</a></li>
+       <li><a href="{{ route('location') }}">Lokasi</a></li>
       </ul>
      </div>
     </div>
