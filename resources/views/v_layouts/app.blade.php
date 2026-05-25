@@ -238,6 +238,7 @@
       <li><a href="{{ route('beranda') }}">Beranda</a></li>
       <li><a href="{{ route('produk.all') }}">Produk</a></li>
       <li><a href="{{ route('location') }}">Lokasi</a></li>
+      <li><a href="{{ route('aboutus') }}">Tentang Kami</a></li>
       <li><a href="https://wa.me/6282114943996">Hubungi Kami</a></li>
      </ul>
     </div>
@@ -485,7 +486,7 @@
       <h3 class="footer-header">Link</h3>
       <ul class="list-links">
        <li><a href="{{ route('produk.all') }}">Produk</a></li>
-       <li><a href="#">About Us</a></li>
+       <li><a href="{{ route('aboutus') }}">Tentang Kami</a></li>
        <li><a href="{{ route('location') }}">Lokasi</a></li>
       </ul>
      </div>

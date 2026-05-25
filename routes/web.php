@@ -33,6 +33,7 @@ Route::get('/', function () {
 
 Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/lokasi', [BerandaController::class, 'location'])->name('location');
+Route::get('/about-us', [BerandaController::class, 'aboutus'])->name('aboutus');
 
 Route::get('backend/beranda', [BerandaController::class, 'berandaBackend'])
     ->name('backend.beranda')

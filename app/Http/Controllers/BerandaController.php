@@ -21,7 +21,7 @@ class BerandaController extends Controller
         $totalomset = Order::where('status', '!=', 'pending_payment')->sum('total_harga');
         // ->where('status', '!=', 'pending_payment') -> jika ingin pakai pending_payment
         $orders = Order::select(DB::raw('DATE(created_at) as tanggal'), DB::raw('COUNT(*) as total'))->groupBy('tanggal')->orderBy('tanggal', 'ASC')->get();
-        $latestpost = Produk::orderBy('id','desc')->take(3)->get();
+        $latestpost = Produk::orderBy('id', 'desc')->take(3)->get();
 
         $tanggal = $orders->pluck('tanggal');
         $totalOrder = $orders->pluck('total');
@@ -51,5 +51,9 @@ class BerandaController extends Controller
     public function location()
     {
         return view('v_beranda.lokasi');
+    }
+    public function aboutus()
+    {
+        return view('v_beranda.about_us');
     }
 }
