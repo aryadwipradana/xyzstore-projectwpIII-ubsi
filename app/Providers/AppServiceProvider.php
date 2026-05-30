@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     }
      View::composer('*', function ($view) {
 
-        $newestproduct = Produk::latest()->take(2)->get();
+        $newestproduct = Produk::Where('status',1)->orderBy('updated_at','desc')->take(2)->get();
 
         $view->with('newestproduct', $newestproduct);
     });

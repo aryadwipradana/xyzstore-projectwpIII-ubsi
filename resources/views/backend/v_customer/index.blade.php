@@ -24,19 +24,9 @@
           <td> {{ $row->user->nama }} </td>
           <td> {{ $row->user->email }} </td>
           <td>
-           <a href="#" title="Ubah Data">
-            <button type="button" class="btn btn-warning btnsm"><i class="fas fa-eye"></i> Detail</button>
+           <a href="" title="Ubah Data">
+            <button type="button" class="btn btn-warning btn-sm"><i class="fas fa-eye"></i> Detail</button>
            </a>
-           <a href="#" title="Ubah Data">
-            <button type="button" class="btn btn-cyan btnsm"><i class="far fa-edit"></i> Ubah</button>
-           </a>
-           <form method="POST" action="#" style="display: inlineblock;">
-            @method('delete')
-            @csrf
-            <button type="submit" class="btn btn-danger btn-sm show_confirm" data-konf-delete="{{ $row->nama }}"
-             title='Hapus Data'>
-             <i class="fas fa-trash"></i> Hapus</button>
-           </form>
           </td>
          </tr>
         @endforeach

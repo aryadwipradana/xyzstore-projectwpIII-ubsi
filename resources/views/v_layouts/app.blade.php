@@ -262,7 +262,7 @@
       <div class="banner banner-1">
        <img src="{{ asset('frontend/img/banner01.png') }}" alt="">
        <div class="banner-caption text-center">
-        <h2 class="banner-title">
+        <h2 class="banner-title" style="color: #ede9e9;">
          Lagi cari <br> pakaian kece?
         </h2>
         <h3 class="font-weak banner-subtitle" style="color: 30323a;">XYZ Store solusinya</h3>
