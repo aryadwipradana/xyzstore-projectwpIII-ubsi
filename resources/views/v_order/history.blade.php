@@ -53,7 +53,11 @@
              <span class="label label-primary">
               Menunggu Pembayaran
             </span>
-            @elseif ($order->status =='paid')
+            @elseif ($order->status =='pending')
+                         <span class="label label-danger">
+              Belum di Checkout
+            </span>
+           @elseif ($order->status =='paid')
                          <span class="label label-success">
               Pembayaran Selesai
             </span>
@@ -69,7 +73,7 @@
             <button type="submit" class="btn primary-btn order-btn">Bayar Sekarang</button>
           </form>
           @elseif ($order->status == 'pending')
-              <a class="btn btn-default" href="{{ route('order.cart') }}">Keranjang</a>
+              <a class="btn primary-btn" href="{{ route('order.cart') }}">Keranjang</a>
          @else
 <a href="{{ route('invoice', $order->id )}}" class="btn primary-btn order-btn">
     INVOICE
