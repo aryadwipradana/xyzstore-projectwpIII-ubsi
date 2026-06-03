@@ -1,7 +1,17 @@
 @extends('backend.v_layouts.app')
 @section('content')
     <!-- contentAwal -->
+ <style>
+  .no-spinner::-webkit-inner-spin-button,
+  .no-spinner::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+  }
 
+  .no-spinner {
+   -moz-appearance: textfield;
+  }
+ </style>
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -108,13 +118,13 @@
 
                                     <div class="form-group">
                                         <label>Harga</label>
-                                        <input type="text"
+                                        <input type="number"
                                             onkeypress="return 
                                     hanyaAngka(event)"
                                             name="harga" value="{{ old('harga', $edit->harga) }}"
-                                            class="form-control 
+                                            class="form-control no-spinner
                                     @error('harga') is-invalid @enderror"
-                                            placeholder="Masukkan Harga Produk">
+                                            placeholder="Masukkan Harga Produk" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
                                         @error('harga')
                                             <span class="invalid-feedback alert-danger" role="alert">
                                                 {{ $message }}
@@ -124,12 +134,12 @@
 
                                     <div class="form-group">
                                         <label>Berat</label>
-                                        <input type="text"
+                                        <input type="number"
                                             onkeypress="return 
                                     hanyaAngka(event)"
                                             name="berat" value="{{ old('berat', $edit->berat) }}"
                                             class="form-control @error('berat') is-invalid @enderror"
-                                            placeholder="Masukkan Berat Produk">
+                                            placeholder="Masukkan Berat Produk" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
                                         @error('berat')
                                             <span class="invalid-feedback alert-danger" role="alert">
                                                 {{ $message }}
@@ -139,12 +149,12 @@
 
                                     <div class="form-group">
                                         <label>Stok</label>
-                                        <input type="text"
+                                        <input type="number"
                                             onkeypress="return 
                                     hanyaAngka(event)"
                                             name="stok" value="{{ old('stok', $edit->stok) }}"
                                             class="form-control @error('stok') is-invalid @enderror"
-                                            placeholder="Masukkan Stok Produk">
+                                            placeholder="Masukkan Stok Produk" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
                                         @error('stok')
                                             <span class="invalid-feedback alert-danger" role="alert">
                                                 {{ $message }}

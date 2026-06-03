@@ -180,7 +180,10 @@ navigation"><i class="ti-more"></i></a>
         href="{{ route('backend.customer.index') }}" aria-expanded="false"><i
          class="mdi mdi-account-multiple"></i><span class="hide-menu">Customer</span></a>
       </li>
-
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+        href="{{ route('backend.pesanan.proses') }}" aria-expanded="false"><i
+         class="mdi mdi-table"></i><span class="hide-menu">Order</span></a>
+      </li>
       <li class="sidebar-item"> <a class="sidebar-link has-arrow waves effect waves-dark" href="javascript:void(0)"
         aria-expanded="false"><i class="mdi mdi-shopping"></i><span class="hide-menu">Data Produk </span></a>
        <ul aria-expanded="false" class="first-level collapse">
@@ -205,10 +208,7 @@ navigation"><i class="ti-more"></i></a>
                                             class="hide-menu"> Order </span></a></li>
        </ul>
       </li>
-            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-        href="{{ route('backend.pesanan.proses') }}" aria-expanded="false"><i
-         class="mdi mdi-table"></i><span class="hide-menu">Order</span></a>
-      </li>
+            
      </ul>
     </nav>
     <!-- End Sidebar navigation -->

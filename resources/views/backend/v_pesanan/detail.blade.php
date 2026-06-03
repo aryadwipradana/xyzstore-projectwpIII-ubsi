@@ -1,6 +1,16 @@
 @extends('backend.v_layouts.app')
 @section('content')
+ <style>
+  .no-spinner::-webkit-inner-spin-button,
+  .no-spinner::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+  }
 
+  .no-spinner {
+   -moz-appearance: textfield;
+  }
+ </style>
 
  <!-- template -->
  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -21,9 +31,9 @@
       <div class="col-xs-12 col-sm-12 col-md-6">
        <h5>Pelanggan</h5>
        <address>
-        Nama: {{ $order->customer->nama }}<br>
-        Email: {{ $order->customer->email }}<br>
-        Hp: {{ $order->customer->hp }}<br>
+        Nama: {{ $order->customer->user->nama }}<br>
+        Email: {{ $order->customer->user->email }}<br>
+        Hp: {{ $order->customer->user->hp }}<br>
        </address>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-6 text-right">
@@ -105,8 +115,8 @@
       <div class="col-xs-6 col-sm-6 col-md-6">
        <div class="form-group">
         <label>No. Resi</label>
-        <input type="text" name="noresi" value="{{ old('noresi', $order->noresi) }}"
-         class="form-control @error('noresi') is-invalid @enderror" placeholder="Masukkan Nomor Resi">
+        <input type="number" name="noresi" value="{{ old('noresi', $order->noresi) }}"
+         class="form-control no-spinner @error('noresi') is-invalid @enderror" placeholder="Masukkan Nomor Resi"  oninput="this.value=this.value.replace(/[^0-9]/g,'')">
         @error('noresi')
          <span class="invalid-feedback alert-danger" role="alert">
           {{ $message }}
@@ -149,9 +159,9 @@ is-invalid @enderror" disabled >{{ old('alamat', $order->customer->alamat ?? '')
 
        <div class="form-group">
         <label>Kode Pos</label>
-        <input type="text" name="pos" value="{{ old('pos', $order->pos) }}"
-         class="form-control @error('pos') is-invalid @enderror" placeholder="Masukkan Nomor 
-Resi">
+        <input type="number" name="pos" value="{{ old('pos', $order->pos) }}"
+         class="form-control no-spinner @error('pos') is-invalid @enderror" placeholder="Masukkan Nomor 
+Resi" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
         @error('pos')
          <span class="invalid-feedback alert-danger" role="alert">
           {{ $message }}

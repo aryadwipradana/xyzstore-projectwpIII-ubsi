@@ -43,9 +43,9 @@ class ProdukController extends Controller
                 'kategori_id' => 'required',
                 'nama_produk' => 'required|max:255|unique:produk',
                 'detail' => 'required',
-                'harga' => 'required',
-                'berat' => 'required',
-                'stok' => 'required',
+                'harga' => 'required|max:20|numeric|min:1',
+                'berat' => 'required|min:1|max|4',
+                'stok' => 'required|min:1|max|5',
                 'foto' => 'required|image|mimes:jpeg,jpg,png,gif|file|max:2000',
             ],
             [
