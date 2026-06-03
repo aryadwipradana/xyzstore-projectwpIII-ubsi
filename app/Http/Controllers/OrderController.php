@@ -277,6 +277,7 @@ ditambahkan ke keranjang',
         $customer->save();
         $order = Order::where('customer_id', $customer->id)->where('status', 'pending')->first();
 
+        
         // ✅ simpan ongkir lama dulu
         $oldOngkir = $order->biaya_ongkir ?? 0;
 

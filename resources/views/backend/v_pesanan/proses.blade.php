@@ -6,7 +6,7 @@
   <div class="card mb-3">
    <div class="card-body">
     <div class="table-responsive">
-     <table id="dataTable" class="table table-bordered table-hover display" style="width:100%">
+     <table id="zero_config" class="table-striped table-bordered table">
       <thead>
        <tr>
         <th>No</th>
@@ -24,20 +24,24 @@
          <td> {{ $loop->iteration }}</td>
          <td> {{ $row->id }} </td>
          <td>{{ $row->created_at->format('d M Y H:i') }}</td>
-         <td>Rp. {{ number_format($row->total_harga , 0, ',', '.') }}</td>
+         <td>Rp. {{ number_format($row->total_harga, 0, ',', '.') }}</td>
          <td>
 
           @if ($row->status == 'Paid')
            <span class="badge badge-primary"></i>
             Paid
            </span>
-           @elseif ($row->status == 'Kirim')
-                      <span class="badge badge-danger"></i>
+          @elseif ($row->status == 'Kirim')
+           <span class="badge badge-danger"></i>
             Kirim
            </span>
-                      @elseif ($row->status == 'pending_payment')
-                      <span class="badge badge-info"></i>
+          @elseif ($row->status == 'pending_payment')
+           <span class="badge badge-info"></i>
             Pending
+           </span>
+          @elseif ($row->status == 'Selesai')
+           <span class="badge badge-success"></i>
+            {{ $row->status }}
            </span>
           @else
            <span class="badge badge-danger" style="color: white;"></i>
@@ -51,7 +55,7 @@
            <button type="button" class="badge badge-primary"><i class="far fa-eye"></i> Detail</button>
           </a>
 
-          <a href="{{ route('backend.invoice', $row->id )}}" title="Cetak Invoice" target="_blank">
+          <a href="{{ route('backend.invoice', $row->id) }}" title="Cetak Invoice" target="_blank">
            <button type="button" class="badge badge-secondary"><i class="fas fa-print"></i> Cetak Invoice</button>
           </a>
          </td>
