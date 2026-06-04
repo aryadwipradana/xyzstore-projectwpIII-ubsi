@@ -174,6 +174,10 @@ ditambahkan ke keranjang',
             return redirect()->route('order.cart')->with('error', 'Customer tidak ditemukan');
         }
 
+        if (!$customer->user->hp) {
+            return redirect()->route('customer.akun', Auth::id())->with('error', 'Silakan lengkapi nomor HP terlebih dahulu sebelum memilih pengiriman.');
+        }
+
         $order = Order::where('customer_id', $customer->id)->where('status', 'pending')->with('orderItems.produk')->first();
 
         if (!$order || $order->orderItems->count() == 0) {
@@ -271,13 +275,17 @@ ditambahkan ke keranjang',
 
     public function chooseShipping(Request $request)
     {
+        $request->validate([
+            'alamat' => 'required',
+            'pos' => 'required|digits:5',
+            'province_name' => 'required',
+            'city_name' => 'required',
+            'district_name' => 'required',
+        ]);
+
         $customer = Customer::where('user_id', Auth::id())->first();
-        // simpan alamat
-        $customer->alamat = $request->alamat;
-        $customer->save();
         $order = Order::where('customer_id', $customer->id)->where('status', 'pending')->first();
 
-        
         // ✅ simpan ongkir lama dulu
         $oldOngkir = $order->biaya_ongkir ?? 0;
 
@@ -287,6 +295,12 @@ ditambahkan ke keranjang',
         $order->biaya_ongkir = $request->cost;
         $order->estimasi_ongkir = $request->etd;
         $order->total_berat = $request->weight;
+
+        $order->alamat = $request->alamat;
+        $order->pos = $request->pos;
+        $order->province_name = $request->province_name;
+        $order->city_name = $request->city_name;
+        $order->district_name = $request->district_name;
 
         // ✅ hitung ulang total (hapus lama, tambah baru)
         $order->total_harga = $order->total_harga - $oldOngkir + $request->cost;

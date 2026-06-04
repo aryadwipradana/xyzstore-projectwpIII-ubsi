@@ -7,7 +7,7 @@ class Customer extends Authenticatable
 {
     use HasFactory, Notifiable;
     protected $table = 'customer';
-    protected $fillable = ['user_id', 'nama', 'email', 'status', 'role', 'password', 'hp', 'alamat', 'pos', 'foto', 'google_id', 'google_token'];
+    protected $fillable = ['user_id', 'nama', 'email', 'status', 'role', 'password', 'hp', 'foto', 'google_id', 'google_token'];
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

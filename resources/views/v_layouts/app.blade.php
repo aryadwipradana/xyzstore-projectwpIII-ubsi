@@ -130,14 +130,32 @@
     <!-- /Logo -->
 
     <!-- Search -->
+    <style>
+    @media (max-width: 768px) {
+    .header-cart strong {
+        display: none;
+    }
 
+    .header-btns-icon {
+        margin-right: 0;
+    }
+
+        .header-account strong {
+        display: none;
+    }
+
+    .header-account {
+        margin-right: 0;
+    }
+}
+    </style>
     <!-- /Search -->
    </div>
    <div class="pull-right">
     <ul class="header-btns">
      <!-- Cart -->
-     <li class="header-cart dropdown default-dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="{{ route('order.cart') }}">
+     <li class="header-cart">
+      <a href="{{ route('order.cart') }}">
        <div class="header-btns-icon">
         <i class="fa fa-shopping-cart"></i>
        </div>
@@ -237,6 +255,8 @@
      <ul class="menu-list">
       <li><a href="{{ route('beranda') }}">Beranda</a></li>
       <li><a href="{{ route('produk.all') }}">Produk</a></li>
+      <li><a href="{{ route('order.cart') }}">Keranjang</a></li>
+
       <li><a href="{{ route('location') }}">Lokasi</a></li>
       <li><a href="{{ route('aboutus') }}">Tentang Kami</a></li>
       <li><a href="https://wa.me/6282114943996">Hubungi Kami</a></li>
@@ -313,9 +333,9 @@
    font-size: clamp(12px, 2vw, 24px);
   }
 
-     .banner-btn {
-        border-radius: 6px;
-   }
+  .banner-btn {
+   border-radius: 6px;
+  }
 
   @media (max-width: 768px) {
    .banner-caption {
@@ -329,7 +349,7 @@
    .banner-btn {
     padding: 10px 20px;
     font-size: 13px;
-        border-radius: 6px;
+    border-radius: 6px;
    }
   }
 
@@ -340,13 +360,13 @@
     border-radius: 6px;
    }
 
-   
+
    .banner-title {
     line-height: 1.2;
-       font-size: clamp(16px, 3vw, 36px);
+    font-size: clamp(16px, 3vw, 36px);
    }
   }
-   
+
   @media (max-width: 100px) {
    .banner-btn {
     padding: 6px 12px;

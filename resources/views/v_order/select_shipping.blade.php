@@ -1,65 +1,46 @@
 @extends('v_layouts.app')
 @section('content')
+ <style>
+  .no-spinner::-webkit-inner-spin-button,
+  .no-spinner::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+  }
+
+  .no-spinner {
+   -moz-appearance: textfield;
+  }
+ </style>
  <div class="col-md-12">
   <div class="order-summary clearfix">
-
    <div class="section-title">
     <h3 class="title">PILIH PENGIRIMAN</h3>
-   </div>
-
-
-
-   {{-- PROVINSI --}}
-   <div class="form-group">
-    <label>Provinsi</label>
-    <select name="province_id" id="province" class="form-control">
+   </div>{{-- PROVINSI --}} <div class="form-group"><label>Provinsi</label><select name="province_id" id="province"
+     class="form-control">
      <option value="">-- Pilih Provinsi --</option>
      @foreach ($provinces as $province)
       <option value="{{ $province['id'] }}">{{ $province['name'] }}</option>
      @endforeach
-    </select>
-   </div>
-
-   {{-- KOTA --}}
-   <div class="form-group">
-    <label>Kota</label>
-    <select name="city_id" id="city" class="form-control">
+    </select></div>{{-- KOTA --}} <div class="form-group"><label>Kota</label><select name="city_id" id="city"
+     class="form-control">
      <option value="">-- Pilih Kota --</option>
-    </select>
-   </div>
-
-   {{-- KECAMATAN --}}
-   <div class="form-group">
-    <label>Kecamatan</label>
-    <select name="district_id" id="district" class="form-control">
+    </select></div>{{-- KECAMATAN --}} <div class="form-group"><label>Kecamatan</label><select name="district_id"
+     id="district" class="form-control">
      <option value="">-- Pilih Kecamatan --</option>
-    </select>
-   </div>
-
-   {{-- ALAMAT --}}
-   <div class="form-group">
-    <label>Alamat Lengkap</label>
-
+    </select></div>{{-- ALAMAT --}} <div class="form-group"><label>Alamat Lengkap</label>
     <textarea name="alamat" id="alamat" class="form-control" rows="4"
-     placeholder="Masukkan alamat lengkap, ciri rumah">{{ old('alamat', $customer->alamat ?? '') }}</textarea>
+     placeholder="Masukkan alamat lengkap, ciri rumah">{{ old('alamat', $order->alamat ?? '') }}</textarea>
    </div>
-
-   {{-- KURIR --}}
-   <div class="form-group">
-    <label>Kurir</label>
-    <select id="courier" class="form-control" name="kurir">
+   <div class="form-group"><label>Kode Pos</label><input name="pos" type="number" id="pos"
+     class="form-control no-spinner" min="1" max="99999"
+     oninput="if(parseInt(this.value) > 99999) this.value = 99999;"
+     placeholder="Masukkan kode pos " />{{ old('pos', $order->pos ?? '') }} </div>{{-- KURIR --}} <div
+    class="form-group"><label>Kurir</label><select id="courier" class="form-control" name="kurir">
      <option value="jne">JNE</option>
      <option value="tiki">TIKI</option>
      <option value="pos">POS</option>
-    </select>
-   </div>
-
-   <button class="btn btn-primary btn-check">CEK ONGKIR</button>
-
-   <br><br>
-
-   {{-- RESULT --}}
-   <table class="table">
+    </select></div><button class="btn btn-primary btn-check">CEK ONGKIR</button><br><br>{{-- RESULT --}} <table
+    class="table">
     <thead>
      <tr>
       <th>Layanan</th>
@@ -71,12 +52,9 @@
     </thead>
     <tbody id="resultOngkir"></tbody>
    </table>
-
   </div>
  </div>
-
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-
  <script>
   $('#district').on('change', function() {
    console.log('District ID:', $(this).val());
@@ -125,8 +103,9 @@
     let weight = {{ $totalWeight }};
 
     let alamat = $('#alamat').val().trim();
+    let pos = $('#pos').val().trim();
 
-    if (!district_id || !courier || !alamat) {
+    if (!district_id || !courier || !alamat || !pos) {
      showAlert('Lengkapi data terlebih dahulu');
      return;
     }
@@ -164,7 +143,12 @@
             <input type="hidden" name="cost" value="${val.cost}">
             <input type="hidden" name="etd" value="${val.etd}">
             <input type="hidden" name="weight" value="{{ $totalWeight }}">
-<input type="hidden" name="alamat" value="${$('#alamat').val().replace(/"/g, '&quot;')}">
+            <input type="hidden" name="alamat" value="${$('#alamat').val().replace(/"/g, '&quot;')}">
+            <input type="hidden" name="pos" value="${$('#pos').val().replace(/"/g, '&quot;')}">
+            <input type="hidden" name="province_name" value="${$('#province option:selected').text()}">
+            <input type="hidden" name="city_name" value="${$('#city option:selected').text()}">
+            <input type="hidden" name="district_name" value="${$('#district option:selected').text()}">
+
             <button class="btn btn-danger">PILIH</button>
         </form>
     </td>
@@ -181,18 +165,12 @@
 
   });
  </script>
-
  <div id="customAlert" class="custom-alert">
   <div class="custom-alert-content">
-   <h4>Oops!</h4>
-   <p id="alertMessage"></p>
-
-   <button onclick="closeAlert()" class="btn btn-danger">
-    OK
-   </button>
+   <h4>Oops !</h4>
+   <p id="alertMessage"></p><button onclick="closeAlert()" class="btn btn-danger">OK </button>
   </div>
  </div>
-
  <style>
   .custom-alert {
    display: none;

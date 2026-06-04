@@ -9,7 +9,7 @@ class Order extends Model
 {
     public $timestamps = true;
     protected $table = 'order';
-    protected $fillable = ['customer_id', 'total_harga', 'status', 'noresi', 'kurir', 'layanan_ongkir', 'biaya_ongkir', 'estimasi_ongkir', 'total_berat', 'alamat', 'pos'];
+    protected $fillable = ['customer_id', 'total_harga', 'status', 'noresi', 'kurir', 'layanan_ongkir', 'biaya_ongkir', 'estimasi_ongkir', 'total_berat', 'alamat', 'pos','province_name','city_name','district_name'];
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);

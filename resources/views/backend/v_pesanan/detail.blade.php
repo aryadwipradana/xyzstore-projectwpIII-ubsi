@@ -92,19 +92,19 @@
         </tbody>
         <tfoot>
          <tr>
-          <th class="empty" colspan="3"></th>
+          <th colspan="3">Provinsi = {{ $order->province_name }}</th>
           <td>Subtotal</td>
           <td colspan="2">Rp. {{ number_format($totalHarga, 0, ',', '.') }}</td>
          </tr>
          <tr>
-          <th class="empty" colspan="3"></th>
+          <th colspan="3"> Kabupaten/Kota = {{ $order->city_name }}</th>
           <td>Ongkos Kirim</td>
           <td colspan="2">
            Rp. {{ number_format($order->biaya_ongkir, 0, ',', '.') }}
           </td>
          </tr>
          <tr>
-          <th class="empty" colspan="3"></th>
+          <th class="empty" colspan="3">Kecamatan = {{ $order->district_name }}</th>
           <th>TOTAL BAYAR</th>
           <th colspan="2" class="total">Rp. {{ number_format($totalHarga + $order->biaya_ongkir, 0, ',', '.') }}
           </th>
@@ -149,7 +149,7 @@
        <div class="form-group">
         <label>Alamat</label><br>
         <textarea name="alamat" class="form-control @error('alamat')
-is-invalid @enderror" disabled >{{ old('alamat', $order->customer->alamat ?? '') }}</textarea>
+is-invalid @enderror" disabled >{{ old('alamat', $order->alamat ?? '') }}</textarea>
         @error('alamat')
          <span class="invalid-feedback alert-danger" role="alert">
           {{ $message }}
@@ -159,9 +159,14 @@ is-invalid @enderror" disabled >{{ old('alamat', $order->customer->alamat ?? '')
 
        <div class="form-group">
         <label>Kode Pos</label>
-        <input type="number" name="pos" value="{{ old('pos', $order->pos) }}"
-         class="form-control no-spinner @error('pos') is-invalid @enderror" placeholder="Masukkan Nomor 
-Resi" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+        <input type="text"
+       name="pos"
+       value="{{ old('pos', $order->pos) }}"
+       class="form-control no-spinner @error('pos') is-invalid @enderror"
+       placeholder="Masukkan Kode Pos"
+       maxlength="5"
+       pattern="[0-9]{5}"
+       oninput="this.value=this.value.replace(/[^0-9]/g,'')">
         @error('pos')
          <span class="invalid-feedback alert-danger" role="alert">
           {{ $message }}

@@ -24,6 +24,9 @@ return new class extends Migration {
             $table->double('total_harga');
             $table->text('alamat')->nullable();
             $table->string('pos')->nullable();
+            $table->string('province_name')->nullable();
+            $table->string('city_name')->nullable();
+            $table->string('district_name')->nullable();
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');

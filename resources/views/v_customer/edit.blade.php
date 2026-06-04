@@ -73,43 +73,23 @@
        </div>
        <div class="form-group">
         <label>HP</label>
-        <input type="text" onkeypress="return hanyaAngka(event)" name="hp"
-         value="{{ old('hp', $edit->user->hp) }}" class="form-control @error('hp') isinvalid @enderror"
-         placeholder="Masukkan Nomor HP">
+        <input type="tel" name="hp" value="{{ old('hp', $edit->user->hp) }}"
+         class="form-control @error('hp') is-invalid @enderror" placeholder="Masukkan Nomor HP 08*********" maxlength="12"
+         pattern="[0-9]{12}" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
         @error('hp')
          <span class="invalid-feedback alert-danger" role="alert">
           {{ $message }}
          </span>
         @enderror
        </div>
-       <div class="form-group">
-        <label>Alamat</label><br>
-        <textarea name="alamat" class="form-control @error('alamat')is-invalid @enderror">{{ old('alamat', $edit->alamat) }}</textarea>
-        @error('alamat')
-         <span class="invalid-feedback alert-danger" role="alert">
-          {{ $message }}
-         </span>
-        @enderror
-       </div>
-       <div class="form-group">
-        <label>Kode Pos</label>
-        <input type="text" name="pos" value="{{ old('pos', $edit->pos) }}"
-         class="form-control @error('pos') is-invalid @enderror" placeholder="Masukkan Nomor
-Resi">
-        @error('pos')
-         <span class="invalid-feedback alert-danger" role="alert">
-          {{ $message }}
-         </span>
-        @enderror
-       </div>
-      </div>
-      <br>
-      <div class="col-md-12">
+
        <br>
-       <div class="pull-left">
-        <button type="submit" class="primary-btn">Simpan</button>
+       <div class="col-md-12">
+        <br>
+        <div class="pull-left">
+         <button type="submit" class="primary-btn">Simpan</button>
+        </div>
        </div>
-      </div>
      </form>
     </div>
    </div>

@@ -14,9 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('google_id')->nullable();
-            $table->string('google_token')->nullable();
-            $table->string('alamat')->nullable();
-            $table->string('pos')->nullable();
+            $table->text('google_token')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
         });

@@ -99,12 +99,7 @@ gif.',
         if ($request->email != $customer->user->email) {
             $rules['email'] = 'required|max:255|email|unique:customer';
         }
-        if ($request->alamat != $customer->alamat) {
-            $rules['alamat'] = 'required';
-        }
-        if ($request->pos != $customer->pos) {
-            $rules['pos'] = 'required';
-        }
+
         $validatedData = $request->validate($rules, $messages);
         // menggunakan ImageHelper
         if ($request->file('foto')) {
@@ -125,10 +120,7 @@ gif.',
             $validatedData['foto'] = $originalFileName;
         }
         $customer->user->update($validatedData);
-        $customer->update([
-            'alamat' => $request->input('alamat'),
-            'pos' => $request->input('pos'),
-        ]);
+
         return redirect()->route('customer.akun', $id)->with(
             'success',
             'Data berhasil
