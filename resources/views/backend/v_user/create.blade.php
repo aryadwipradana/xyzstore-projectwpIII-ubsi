@@ -63,8 +63,9 @@
          </div>
          <div class="form-group">
           <label>HP</label>
-          <input type="text" onkeypress="return hanyaAngka(event)" name="hp" value="{{ old('hp') }}"
-           class="form-control @error('hp') isinvalid @enderror" placeholder="Masukkan Nomor HP">
+          <input type="tel" onkeypress="return hanyaAngka(event)" name="hp" value="{{ old('hp') }}"
+           class="form-control @error('hp') isinvalid @enderror" placeholder="Masukkan Nomor HP" maxlength="12"
+         pattern="[0-9]{12}" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
           @error('hp')
            <span class="invalid-feedback alert-danger" role="alert">
             {{ $message }}

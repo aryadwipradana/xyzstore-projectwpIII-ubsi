@@ -20,7 +20,12 @@
          <th>Email</th>
          <th>Role</th>
          <th>Status</th>
+                @if (Auth::user()->role == 1)
+
          <th>Aksi</th>
+       @elseif(Auth::user()->role == 0)
+
+             @endif
         </tr>
        </thead>
 
@@ -51,6 +56,7 @@
              NonAktif</span>
            @endif
           </td>
+       @if (Auth::user()->role == 1)
           <td>
            <a href="{{ route('backend.user.edit', $row->id) }}" title="Ubah Data">
             <button type="button" class="btn btn-cyan btn-sm"><i class="far fa-edit"></i> Ubah</button>
@@ -59,11 +65,17 @@
            <form method="POST" action="{{ route('backend.user.destroy', $row->id) }}" style="display: inline-block;">
             @method('delete')
             @csrf
-            <button type="submit" class="btn btn-danger btn-sm" title='Hapus Data'>
-             <i class="fas fa-trash"></i> Hapus</button>
+            {{-- <button type="submit" class="btn btn-danger btn-sm" title='Hapus Data'>
+             <i class="fas fa-trash"></i> Hapus</button> --}}
+              <button type="submit" class="btn btn-danger btn-sm show_confirm"
+                                                    data-konf-delete="{{ $row->email }}" title='Hapus Data'>
+                                                    <i class="fas fa-trash"></i> Hapus</button>
            </form>
 
           </td>
+       @elseif(Auth::user()->role == 0)
+
+             @endif
          </tr>
         @endforeach
        </tbody>

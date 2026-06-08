@@ -14,7 +14,6 @@
          <th>No</th>
          <th>Nama</th>
          <th>Email</th>
-         <th>Aksi</th>
         </tr>
        </thead>
        <tbody>
@@ -23,11 +22,6 @@
           <td> {{ $loop->iteration }} </td>
           <td> {{ $row->user->nama }} </td>
           <td> {{ $row->user->email }} </td>
-          <td>
-           <a href="" title="Ubah Data">
-            <button type="button" class="btn btn-warning btn-sm"><i class="fas fa-eye"></i> Detail</button>
-           </a>
-          </td>
          </tr>
         @endforeach
        </tbody>

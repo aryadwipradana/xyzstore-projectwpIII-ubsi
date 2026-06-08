@@ -158,21 +158,22 @@ is-invalid @enderror" disabled >{{ old('alamat', $order->alamat ?? '') }}</texta
        </div>
 
        <div class="form-group">
-        <label>Kode Pos</label>
-        <input type="text"
-       name="pos"
-       value="{{ old('pos', $order->pos) }}"
-       class="form-control no-spinner @error('pos') is-invalid @enderror"
-       placeholder="Masukkan Kode Pos"
-       maxlength="5"
-       pattern="[0-9]{5}"
-       oninput="this.value=this.value.replace(/[^0-9]/g,'')">
-        @error('pos')
-         <span class="invalid-feedback alert-danger" role="alert">
-          {{ $message }}
-         </span>
-        @enderror
-       </div>
+    <label>Kode Pos</label>
+    <input type="text" 
+           name="pos"
+           value="{{ old('pos', $order->pos ?? '') }}"
+           class="form-control no-spinner @error('pos') is-invalid @enderror"
+           placeholder="Masukkan Kode Pos"
+           maxlength="5"
+           pattern="[0-9]{5}"
+           oninput="this.value=this.value.replace(/[^0-9]/g,'')" disabled>
+    
+    @error('pos')
+        <span class="invalid-feedback alert-danger" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>
       </div>
 
      </div>

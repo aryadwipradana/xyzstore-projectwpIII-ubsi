@@ -87,7 +87,7 @@
     <div class="col-12">
      <div class="card">
       <div class="card-body">
-       <h5 class="card-title">Line Chart</h5>
+       <h5 class="card-title">Line Chart Order</h5>
        <div id="bar-chart" class="bars"></div>
       </div>
      </div>
