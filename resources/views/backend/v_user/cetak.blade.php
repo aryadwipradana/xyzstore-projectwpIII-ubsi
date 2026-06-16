@@ -50,6 +50,8 @@
                         Super Admin
                     @elseif($row->role == 0)
                         Admin
+                        @else
+                        Customer
                     @endif
                 </td>
                 <td>

@@ -355,12 +355,12 @@ ditambahkan ke keranjang',
 
         $rules = [
             'status' => 'required',
+            'noresi' => 'nullable|max:15', 
         ];
 
         // Jika status diubah menjadi Kirim
         if ($request->status == 'Kirim') {
             $rules['noresi'] = 'required|min:1|max:15';
-            $rules['pos'] = 'required|min:1|max:5';
         }
 
         if ($request->status == 'Selesai' && $order->status != 'Kirim') {
